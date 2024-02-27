@@ -1,0 +1,15 @@
+log:
+  level: DEBUG
+
+api:
+  insecure: true
+
+providers:
+  docker:
+    exposedByDefault: true
+    network: web
+    defaultRule: "Host(`{{ normalize .Name }}.test`)"
+
+entryPoints:
+  web:
+   address: ":80"

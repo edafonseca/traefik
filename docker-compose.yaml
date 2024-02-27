@@ -1,0 +1,18 @@
+version: '3'
+
+networks:
+  web:
+    external: true
+
+services:
+  traefik:
+    image: traefik
+    restart: always
+    ports:
+      - "8080:80"
+      - "8081:8080" # The Web UI (enabled by --api)
+    networks:
+      - web
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./traefik.yaml:/etc/traefik/traefik.yaml
